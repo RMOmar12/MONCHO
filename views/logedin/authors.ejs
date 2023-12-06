@@ -4,6 +4,10 @@
     <h3> Search </h3>
 
     <style>
+        body {
+            background-color: #080F1F; /* Reemplaza #tuColor con el color deseado */
+            color: #ffffff;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -17,7 +21,7 @@
         }
 
         th {
-            background-color: #564caf;
+            background-color: #161E31;
             color: white;
         }
 
@@ -25,7 +29,7 @@
         .toolbar {
             display: flex;
             justify-content: space-around;
-            background-color: rgb(133, 105, 226);
+            background-color: #161E31;
             padding: 5px;
             margin: 10px;
         }
@@ -33,7 +37,7 @@
         .toolbar button {
             margin: 10px;
             padding: 10px 20px;
-            background-color: #8e24aa;
+            background-color: #080F1F;
             color: white;
             font-size: 14px;
             border: none;
@@ -47,13 +51,12 @@
         }
     </style>
 
-    <input type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
 
-    <div class="toolbar">
-        <button onclick="location.reload()" class="button">Undu</button>
-        <button onclick="sortName()" class="button">A-Z</button>
-        <button onclick="sortNameDesc()" class="button">Z-A</button>
-        <p>Filter by role:</p>
+<div class="toolbar">
+    <button onclick="sortName()" class="button">A-Z</button>
+    <button onclick="sortNameDesc()" class="button">Z-A</button>
+    <p>Filter by role:</p>
+    <div class="selectContainer">
         <select id="searchOptions" onchange="searchR()">
             <!-- Opciones de búsqueda aquí -->
             <option value="all">All</option>
@@ -63,11 +66,17 @@
             <option value="Letterer">Letterer</option>
         </select>
     </div>
+</div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Name </th>
+<div class="input_container">
+    <input class="search" type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
+    <button class="undoButton" onclick="location.reload()" class="button">Undu</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name </th>
                 <th>Role</th>
                 <th>Nationality </th>
             </tr>

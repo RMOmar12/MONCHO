@@ -5,6 +5,9 @@
 
     <!-- Mine -->
     <html>
+        <head>
+            <link rel="stylesheet" href="/css/styles.css">
+        </head>
     <div>
 
         <title> Collections </title>
@@ -40,6 +43,7 @@
                 background-color: #161E31;
                 padding: 5px;
                 margin: 10px;
+                border-radius: 10px;
             }
             .toolbar button {
         margin: 10px;
@@ -59,8 +63,6 @@
 
     </style>
     <div class="toolbar">
-    <button onclick="location.reload()" class="button">Undu</button>
-
     <button onclick="sortName()" class="button">A-Z</button>
     <button onclick="sortRating()" class="button">High Raiting</button>
     <button onclick="sortPublishDate()" class="button">New Date</button>
@@ -70,20 +72,22 @@
     <button onclick="filterTable(true)()">Ongoing</button>
     <button onclick="filterTable(false)()">No Ongoing</button>
     <p>Filter by Tags:</p>
-    <select id="searchOptionsT" onchange="searchT()">
-        <!-- Opciones de búsqueda aquí -->
-        <option value="all">All</option>
-        <option value="Action">Action</option>
-        <option value="Funny">Funny</option>
-        <option value="Adult">Adult</option>
-        <option value="Marvel">Marvel</option>
-        <option value="DC">DC</option>
-    </select>
+    <div class="selectContainer">
+        <select id="searchOptionsT" onchange="searchT()">
+            <!-- Opciones de búsqueda aquí -->
+            <option value="all">All</option>
+            <option value="Action">Action</option>
+            <option value="Funny">Funny</option>
+            <option value="Adult">Adult</option>
+            <option value="Marvel">Marvel</option>
+            <option value="DC">DC</option>
+        </select>
     </div>
-
-
-        <input type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
- 
+    </div>
+    <div class="input_container">
+        <input class="search" type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
+        <button class="undoButton" onclick="location.reload()" class="button">Undu</button>
+    </div>
 
     <table>
         <thead>

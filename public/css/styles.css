@@ -97,3 +97,42 @@ body {
     padding: 10px;
     text-decoration: none;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.search{
+    height: 5%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+
+}
+.input_container{
+    display: flex;
+    flex-direction: row;
+}
+
+.undoButton{
+    margin: 5px;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+}
+
+select{
+    border-radius: 20px;
+}
+
+.selectContainer{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+}
