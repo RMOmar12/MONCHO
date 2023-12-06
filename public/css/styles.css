@@ -136,3 +136,8 @@ select{
     justify-content: center;
 
 }
+
+body {
+    background-color: #080F1F; /* Reemplaza #tuColor con el color deseado */
+    color: #ffffff;
+}
