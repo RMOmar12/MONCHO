@@ -5,6 +5,9 @@
 
     <!-- Mine -->
     <html>
+        <head>
+            <link rel="stylesheet" href="/css/styles.css">
+        </head>
     <div>
 
         <title> Collections </title>
@@ -59,8 +62,6 @@
 
     </style>
     <div class="toolbar">
-    <button onclick="location.reload()" class="button">Undu</button>
-
     <button onclick="sortName()" class="button">A-Z</button>
     <button onclick="sortRating()" class="button">High Raiting</button>
     <button onclick="sortPublishDate()" class="button">New Date</button>
@@ -80,10 +81,10 @@
         <option value="DC">DC</option>
     </select>
     </div>
-
-
-        <input type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
- 
+    <div class="input_container">
+        <input class="search" type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
+        <button class="undoButton" onclick="location.reload()" class="button">Undu</button>
+    </div>
 
     <table>
         <thead>
