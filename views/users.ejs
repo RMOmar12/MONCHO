@@ -1,32 +1,72 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <head>
     <style>
         /* Cambiar el fondo de todo el documento */
         body {
-            background-color: #080F1F; /* Reemplaza #tuColor con el color deseado */
+            background-color: #080F1F;
             color: #ffffff;
+        }
+        .panel {
+            background-color: #080F1F;
         }
     </style>
 </head>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="/createaccount" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr style="border-top: 3px solid #161E31;">
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="/login" method="POST" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="Username" tabindex="1" class="form-control" placeholder="Username" >
+									</div>
+                                    <div>
+                                    </div>
+									<div class="form-group">
+										<input type="password" name="Password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" tabindex="4" class="form-control btn btn-login" value="Login">
+											</div>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<div>
-    <h1> Users </h1>
 
-    <form action = "/login" method = "POST">
-        <h3> Login </h3>
-
-        <div>
-            <label for = "Username"> <b> Username </b> </label>
-            <input type = "text" placeholder = "Enter Your Username..." name = "Username">
-        </div>
-        <div>
-            <label for = "Password"> <b> Password </b> </label>
-            <input type = "password" placeholder = "Enter Your Password..." name = "Password">
-        </div>
-
-        <input type = "submit" value = "Login" class = "btn">
-    </form>
-    
-    <h3> Create Your Account </h3>
-    <a href = "/createaccount"> <button> Register</button> </a>
-</div>
 

@@ -1,3 +1,21 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<head>
+    <style>
+        /* Cambiar el fondo de todo el documento */
+        body {
+            background-color: #080F1F; /* Reemplaza #tuColor con el color deseado */
+            color: #ffffff;
+        }
+        .panel {
+            background-color: #080F1F;
+        }
+    </style>
+</head>
+
+
 <form action = "/register" method = "POST">
     <h3> Register </h3>
     
@@ -28,3 +46,49 @@
 
     <input type = "submit" value = "Register" class = "btn">
 </form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#" class="active" id="login-form-link">Register</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="/users" id="register-form-link">Login</a>
+                        </div>
+                    </div>
+                    <hr style="border-top: 3px solid #161E31;">
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="login-form" action="/login" method="POST" role="form" style="display: block;">
+                                <div class="form-group">
+                                    <input type="text" name="Username" tabindex="1" class="form-control" placeholder="Username" >
+                                </div>
+                                <div>
+                                    <input type = "text" placeholder = "Enter Your E-mail..." name = "Email">
+                                </div>
+
+                                <div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="Password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" tabindex="4" class="form-control btn btn-login" value="Login">
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
