@@ -141,3 +141,18 @@ body {
     background-color: #080F1F; /* Reemplaza #tuColor con el color deseado */
     color: #ffffff;
 }
+.monchoContainer{
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.monchoContainer img {
+    width: 100%;
+}
+
+.monchoContainer h {
+    text-align: center;
+}
