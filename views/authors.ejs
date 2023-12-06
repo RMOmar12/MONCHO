@@ -48,31 +48,35 @@ body {
 
 </style>
 <div class="toolbar">
-    <button onclick="location.reload()" class="button">Undu</button>
     <button onclick="sortName()" class="button">A-Z</button>
     <button onclick="sortNameDesc()" class="button">Z-A</button>
     <p>Filter by role:</p>
-    <select id="searchOptions" onchange="searchR()">
-        <!-- Opciones de búsqueda aquí -->
-        <option value="all">All</option>
-        <option value="Writer">Writer</option>
-        <option value="Editor">Editor</option>
-        <option value="Artist">Artist</option>
-        <option value="Letterer">Letterer</option>
-    </select>
+    <div class="selectContainer">
+        <select id="searchOptions" onchange="searchR()">
+            <!-- Opciones de búsqueda aquí -->
+            <option value="all">All</option>
+            <option value="Writer">Writer</option>
+            <option value="Editor">Editor</option>
+            <option value="Artist">Artist</option>
+            <option value="Letterer">Letterer</option>
+        </select>
+    </div>
+
     <p>Filter by Nationality:</p>
-    <select id="searchOptionsN" onchange="searchN()">
-        <!-- Opciones de búsqueda aquí -->
-        <option value="all">All</option>
-        <option value="American">American</option>
-        <option value="Spanish">Spanish</option>
-        <option value="Brazilian">Brazilian</option>
-        <option value="Canadian-American">Canadian-American</option>
-        <option value="Italian-American">Italian-American</option>
-    </select>
+    <div class="selectContainer">
+        <select id="searchOptionsN" onchange="searchN()">
+            <!-- Opciones de búsqueda aquí -->
+            <option value="all">All</option>
+            <option value="American">American</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Brazilian">Brazilian</option>
+            <option value="Canadian-American">Canadian-American</option>
+            <option value="Italian-American">Italian-American</option>
+        </select>
+    </div>
 </div>
 <input  class="search" type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
-
+<button class="undoButton" onclick="location.reload()" class="button">Undu</button>
 
 <table>
     <thead>

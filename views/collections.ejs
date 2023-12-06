@@ -43,6 +43,7 @@
                 background-color: #161E31;
                 padding: 5px;
                 margin: 10px;
+                border-radius: 10px;
             }
 .toolbar button {
     margin: 10px;
@@ -71,15 +72,17 @@
     <button onclick="filterTable(true)()">Ongoing</button>
     <button onclick="filterTable(false)()">No Ongoing</button>
     <p>Filter by Tags:</p>
-    <select id="searchOptionsT" onchange="searchT()">
-        <!-- Opciones de búsqueda aquí -->
-        <option value="all">All</option>
-        <option value="Action">Action</option>
-        <option value="Funny">Funny</option>
-        <option value="Adult">Adult</option>
-        <option value="Marvel">Marvel</option>
-        <option value="DC">DC</option>
-    </select>
+    <div class="selectContainer">
+        <select id="searchOptionsT" onchange="searchT()">
+            <!-- Opciones de búsqueda aquí -->
+            <option value="all">All</option>
+            <option value="Action">Action</option>
+            <option value="Funny">Funny</option>
+            <option value="Adult">Adult</option>
+            <option value="Marvel">Marvel</option>
+            <option value="DC">DC</option>
+        </select>
+    </div>
     </div>
     <div class="input_container">
         <input class="search" type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">

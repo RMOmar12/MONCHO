@@ -124,5 +124,15 @@ a{
     border-radius: 20px;
     background-color: white;
     color: black;
+}
+
+select{
+    border-radius: 20px;
+}
+
+.selectContainer{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 
 }

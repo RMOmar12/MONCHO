@@ -14,24 +14,29 @@
                 border-collapse: collapse;
             }
 
+            body {
+            background-color: #080F1F; 
+            color: #ffffff;
+            }
+
             td {
                 padding: 10px;
                 text-align: left;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 4px solid #161E31;
             }
 
             th {
-                background-color: #564caf;
+                background-color: #161E31;
                 color: white;
                 padding: 10px;
                 text-align: Center;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 4px solid #161E31;
             }
 
             .toolbar {
                 display: flex;
                 justify-content: space-around;
-                background-color: rgb(133, 105, 226);
+                background-color: #161E31;
                 padding: 5px;
                 margin: 10px;
             }
@@ -39,7 +44,7 @@
             .toolbar button {
                 margin: 10px;
                 padding: 10px 20px;
-                background-color: #8e24aa;
+                background-color: #080F1F;
                 color: white;
                 font-size: 14px;
                 border: none;
@@ -57,11 +62,9 @@
 
         <h3> Search </h3>
 
-        <input class="search" type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
-
+        
         <div class="toolbar">
-            <button onclick="location.reload()" class="button">Undu</button>
-
+            
             <button onclick="sortName()" class="button">A-Z</button>
             <button onclick="sortRating()" class="button">High Raiting</button>
             <button onclick="sortPublishDate()" class="button">New Date</button>
@@ -71,17 +74,23 @@
             <button onclick="filterTable(true)()">Ongoing</button>
             <button onclick="filterTable(false)()">No Ongoing</button>
             <p>Filter by Tags:</p>
-            <select id="searchOptionsT" onchange="searchT()">
-                <!-- Opciones de búsqueda aquí -->
-                <option value="all">All</option>
-                <option value="Action">Action</option>
-                <option value="Funny">Funny</option>
-                <option value="Adult">Adult</option>
-                <option value="Marvel">Marvel</option>
-                <option value="DC">DC</option>
-            </select>
+            <div class="selectContainer">
+                <select id="searchOptionsT" onchange="searchT()">
+                    <!-- Opciones de búsqueda aquí -->
+                    <option value="all">All</option>
+                    <option value="Action">Action</option>
+                    <option value="Funny">Funny</option>
+                    <option value="Adult">Adult</option>
+                    <option value="Marvel">Marvel</option>
+                    <option value="DC">DC</option>
+                </select>
+            </div>
         </div>
-
+        <div class="input_container">
+            <input class="search" type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
+            <button class="undoButton" onclick="location.reload()" class="button">Undu</button>
+        </div>
+        
         <table>
             <thead>
                 <tr>
