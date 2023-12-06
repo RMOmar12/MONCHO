@@ -1,21 +1,246 @@
-<display>
-    <title> <%= locals.title %> </title>
+<div>
+    <title>
+        <%= locals.title %>
+    </title>
 
-    <h2> Search </h2>
+    <!-- Mine -->
+    <html>
+    <div>
 
-    <form action = "/result" method = "POST" role = "search">
-        <input type = "search" id = "searchInput" name = "searchBar" placeholder = "What are you looking for?">
-    </form>
-    
-    <h2> Data </h2>
+        <title> Collections </title>
+        <style>
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            
+            body {
+            background-color: #080F1F; 
+            color: #ffffff;
+            }
+            
+            td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 4px solid #161E31;
+            }
 
-    <ul>
-        <% data.forEach(titles => { %>
-        <li>
-            <a href = "/description/<%= titles._id %>">
-                <span> <%= titles.Name %> </span>
-            </a>
-        </li>
-        <% }) %>
-    </ul>
-</display>
+            th {
+                background-color: #161E31;
+                color: rgb(255, 255, 255);
+                padding: 10px;
+                text-align: Center;
+               
+            }
+
+            .toolbar {
+                display: flex;
+                justify-content: space-around;
+                background-color: #161E31;
+                padding: 5px;
+                margin: 10px;
+            }
+.toolbar button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #080F1F;
+    color: #ffffff;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px #161E31;
+    cursor: pointer;
+}
+
+.toolbar button:hover {
+    background-color: #6a1b9a;
+}
+
+    </style>
+    <div class="toolbar">
+    <button onclick="location.reload()" class="button">Undu</button>
+
+    <button onclick="sortName()" class="button">A-Z</button>
+    <button onclick="sortRating()" class="button">High Raiting</button>
+    <button onclick="sortPublishDate()" class="button">New Date</button>
+    <button onclick="sortNameDesc()" class="button">Z-A</button>
+    <button onclick="sortRatingAsc()" class="button">Low Raiting</button>
+    <button onclick="sortPublishDateDesc()" class="button">Old Date</button>
+    <button onclick="filterTable(true)()">Ongoing</button>
+    <button onclick="filterTable(false)()">No Ongoing</button>
+    <p>Filter by Tags:</p>
+    <select id="searchOptionsT" onchange="searchT()">
+        <!-- Opciones de búsqueda aquí -->
+        <option value="all">All</option>
+        <option value="Action">Action</option>
+        <option value="Funny">Funny</option>
+        <option value="Adult">Adult</option>
+        <option value="Marvel">Marvel</option>
+        <option value="DC">DC</option>
+    </select>
+    </div>
+
+
+        <input type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
+ 
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name </th>
+                <th>Rating</th>
+                <th>Publish Date </th>
+                <th>Ongoing</th>
+                <th>Genre</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <% data.forEach(function(titles) { %>
+                <tr>
+                    <td>
+                        <a href="/description/<%= titles._id %>">
+                            <span>
+                                <%= titles.Name %>
+                            </span>
+                        </a>
+                    </td>
+                    <td>
+                        <%= titles.Rating %>
+                    </td>
+                    <td>
+                        <%= titles.Publish_Date %>
+                    </td>
+                    <td>
+                        <%= titles.Ongoing %>
+                    </td>
+                    <td>
+                        <ul>
+                            <% titles.Genre.forEach(function(genre) { %>
+                                <li>
+                                    <%= genre %>
+                                </li>
+                                <% }); %>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <% titles.Tags.forEach(function(Tags) { %>
+                                <li>
+                                    <%= Tags %>
+                                </li>
+                                <% }); %>
+                        </ul>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <script>
+        // Obtiene los elementos del cuerpo de la tabla
+            var tableBody = document.getElementById('tableBody');
+
+            // Obtiene todos los elementos tr en el cuerpo de la tabla
+            var rows = tableBody.getElementsByTagName('tr');
+
+            // Función de ordenamiento para el nombre
+            function sortName() {
+                var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                    rowA.cells[0].textContent.localeCompare(rowB.cells[0].textContent)
+                );
+                appendToTableBody(sortedRows);
+            }
+
+            // Función de ordenamiento para el rating
+            function sortRating() {
+                var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                    rowB.cells[1].textContent - rowA.cells[1].textContent
+                );
+                appendToTableBody(sortedRows);
+            }
+
+            // Función de ordenamiento para la fecha de publicación
+            function sortPublishDate() {
+                var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                    new Date(rowB.cells[2].textContent) - new Date(rowA.cells[2].textContent)
+                );
+                appendToTableBody(sortedRows);
+            }
+
+            // Función para actualizar el cuerpo de la tabla con los elementos tr ordenados
+            function appendToTableBody(sortedRows) {
+                tableBody.innerHTML = '';
+                sortedRows.forEach(row => tableBody.appendChild(row));
+            }
+
+            function search() {
+                    var searchText = document.getElementById('searchField').value.toLowerCase();
+                    var filteredRows = Array.from(rows).filter(row =>
+                        row.cells[0].textContent.toLowerCase().includes(searchText) ||
+                        row.cells[1].textContent.toLowerCase().includes(searchText) ||
+                        row.cells[2].textContent.toLowerCase().includes(searchText)
+                    );
+                    appendToTableBody(filteredRows);
+                }
+
+                // Función de ordenamiento para el nombre de la Z-A
+                    function sortNameDesc() {
+                        var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                            rowB.cells[0].textContent.localeCompare(rowA.cells[0].textContent)
+                        );
+                        appendToTableBody(sortedRows);
+                    }
+
+                    // Función de ordenamiento para el rating del menor al mayor
+                    function sortRatingAsc() {
+                        var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                            rowA.cells[1].textContent - rowB.cells[1].textContent
+                        );
+                        appendToTableBody(sortedRows);
+                    }
+
+                    // Función de ordenamiento para la fecha de publicación de la mas antigua
+                    function sortPublishDateDesc() {
+                        var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                            new Date(rowA.cells[2].textContent) - new Date(rowB.cells[2].textContent)
+                        );
+                        appendToTableBody(sortedRows);
+                    }
+
+                    function refreshPage() {
+                            location.reload();
+                        }
+                        //Ongoing true or false 
+                        function filterTable(value) {
+                                return function () {
+                                    let filter, table, tr, td, i, visible;
+
+                                    filter = value.toString().toUpperCase();
+                                    table = document.getElementById('tableBody');
+                                    tr = table.getElementsByTagName('tr');
+
+                                    for (i = 0; i < tr.length; i++) {
+                                        td = tr[i].getElementsByTagName('td')[3];
+
+                                        if (td) {
+                                            visible = (td.textContent || td.innerText).toUpperCase().indexOf(filter) > -1;
+                                            tr[i].style.display = visible ? "" : "none";
+                                        }
+                                    }
+                                };
+                            }
+                function searchT() {
+                        option = document.getElementById('searchOptionsT').value.toLowerCase();
+                        var filteredRows = Array.from(rows).filter(row =>
+                            row.cells[5].textContent.toLowerCase().includes(option)
+                        );
+                        appendToTableBody(filteredRows);
+                    }
+    </script>
+
+        </html>
+    </div>
+
+</div>

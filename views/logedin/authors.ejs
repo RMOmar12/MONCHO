@@ -1,13 +1,152 @@
 <div>
     <h2> Authors </h2>
 
-    <div class = 'container'>
-        <ul>
-            <% data.forEach(authors => { %>
-                <li>
-                    <span> <a href = "../logedin/bio/<%= authors._id %>"> <%= authors.Name %> <%= authors.Last_Name %> </a> </span>
-                </li>
-            <% }) %>
-        </ul>
+    <h3> Search </h3>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #564caf;
+            color: white;
+        }
+
+
+        .toolbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(133, 105, 226);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        .toolbar button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #8e24aa;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .toolbar button:hover {
+            background-color: #6a1b9a;
+        }
+    </style>
+
+    <input type="text" id="searchField" onkeyup="search()" placeholder="What are you looking for?">
+
+    <div class="toolbar">
+        <button onclick="location.reload()" class="button">Undu</button>
+        <button onclick="sortName()" class="button">A-Z</button>
+        <button onclick="sortNameDesc()" class="button">Z-A</button>
+        <p>Filter by role:</p>
+        <select id="searchOptions" onchange="searchR()">
+            <!-- Opciones de búsqueda aquí -->
+            <option value="all">All</option>
+            <option value="Writer">Writer</option>
+            <option value="Editor">Editor</option>
+            <option value="Artist">Artist</option>
+            <option value="Letterer">Letterer</option>
+        </select>
     </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name </th>
+                <th>Role</th>
+                <th>Nationality </th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <% data.forEach(authors=> { %>
+                <tr>
+                    <td>
+                        <a href="/bio/<%= authors._id %>">
+                            <span>
+                                <%= authors.Name %>
+                                    <%= authors.Last_Name %>
+                            </span>
+                        </a>
+                    </td>
+                    <td>
+                        <%= authors.Role %>
+                    </td>
+                    <td>
+                        <%= authors.Nationality %>
+                    </td>
+
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <script>
+
+        // Obtiene los elementos del cuerpo de la tabla
+        var tableBody = document.getElementById('tableBody');
+
+        // Obtiene todos los elementos tr en el cuerpo de la tabla
+        var rows = tableBody.getElementsByTagName('tr');
+
+
+        function refreshPage() {
+            location.reload();
+        }
+
+        function appendToTableBody(sortedRows) {
+            tableBody.innerHTML = '';
+            sortedRows.forEach(row => tableBody.appendChild(row));
+        }
+
+        function search() {
+            var searchText = document.getElementById('searchField').value.toLowerCase();
+            var filteredRows = Array.from(rows).filter(row =>
+                row.cells[0].textContent.toLowerCase().includes(searchText) ||
+                row.cells[1].textContent.toLowerCase().includes(searchText) ||
+                row.cells[2].textContent.toLowerCase().includes(searchText)
+            );
+            appendToTableBody(filteredRows);
+        }
+
+        function sortName() {
+            var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                rowA.cells[0].textContent.localeCompare(rowB.cells[0].textContent)
+            );
+            appendToTableBody(sortedRows);
+        }
+
+        function sortNameDesc() {
+            var sortedRows = Array.from(rows).sort((rowA, rowB) =>
+                rowB.cells[0].textContent.localeCompare(rowA.cells[0].textContent)
+            );
+            appendToTableBody(sortedRows);
+        }
+
+        function searchR() {
+            option = document.getElementById('searchOptions').value.toLowerCase();
+            console.log(option);
+            var filteredRows = Array.from(rows).filter(row =>
+                row.cells[1].textContent.toLowerCase().includes(option)
+            );
+            appendToTableBody(filteredRows);
+        }
+
+
+    </script>
+
 </div>
